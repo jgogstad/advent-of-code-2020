@@ -23,10 +23,11 @@ object Versions {
   }
 
   object types {
-    val Refined    = "0.9.17"
-    val NewType    = "0.4.4"
-    val Enumeratum = "1.6.1"
-    val Squants    = "1.6.0"
+    val Refined                = "0.9.17"
+    val NewType                = "0.4.4"
+    val Enumeratum             = "1.6.1"
+    val Squants                = "1.6.0"
+    val ScalaCollectionContrib = "0.2.2"
   }
 
 }
