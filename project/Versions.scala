@@ -22,6 +22,10 @@ object Versions {
     val Odin = "0.9.1"
   }
 
+  object math {
+    val Spire = "0.17.0"
+  }
+
   object types {
     val Refined                = "0.9.17"
     val NewType                = "0.4.4"
