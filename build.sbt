@@ -20,6 +20,8 @@ lazy val `advent` = (project in file("."))
       "com.github.valskalla"   %% "odin-core"                % V.logging.Odin,
       "org.scala-lang.modules" %% "scala-collection-contrib" % V.types.ScalaCollectionContrib,
       "org.typelevel"          %% "spire"                    % V.math.Spire,
-      "org.jgrapht"            % "jgrapht-core"              % "1.5.0"
-    )
+      "org.jgrapht"            % "jgrapht-core"              % V.math.Jgrapht,
+      "com.lihaoyi"            %% "fastparse"                % V.parsing.Fastparse
+    ),
+    scalacOptions -= "-Xfatal-warnings"
   )

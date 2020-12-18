@@ -23,7 +23,8 @@ object Versions {
   }
 
   object math {
-    val Spire = "0.17.0"
+    val Spire   = "0.17.0"
+    val Jgrapht = "1.5.0"
   }
 
   object types {
@@ -32,6 +33,10 @@ object Versions {
     val Enumeratum             = "1.6.1"
     val Squants                = "1.6.0"
     val ScalaCollectionContrib = "0.2.2"
+  }
+
+  object parsing {
+    val Fastparse = "2.2.2"
   }
 
 }
