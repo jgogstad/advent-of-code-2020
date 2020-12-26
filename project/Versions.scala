@@ -12,10 +12,7 @@ object Versions {
   object fp {
     val Cats           = "2.2.0"
     val CatsEffect     = "2.3.0"
-    val CatsEffectTime = "0.1.2"
-    val CatsTime       = "0.3.0"
     val Fs2Core        = "2.4.4"
-    val CatsRetry      = "1.1.1"
   }
 
   object logging {
@@ -25,14 +22,12 @@ object Versions {
   object math {
     val Spire   = "0.17.0"
     val Jgrapht = "1.5.0"
+    val Breeze = "1.1"
   }
 
   object types {
-    val Refined                = "0.9.17"
-    val NewType                = "0.4.4"
-    val Enumeratum             = "1.6.1"
-    val Squants                = "1.6.0"
     val ScalaCollectionContrib = "0.2.2"
+    val Squants                = "1.6.0"
   }
 
   object parsing {
