@@ -1,7 +1,6 @@
 package jgogstad.day21
 
 import org.jgrapht.graph.{DefaultEdge, SimpleGraph}
-import io.estatico.newtype.macros.newtype
 import cats.syntax.all._
 import org.jgrapht.alg.interfaces.MatchingAlgorithm
 import org.jgrapht.alg.matching.HopcroftKarpMaximumCardinalityBipartiteMatching
@@ -10,11 +9,6 @@ import scala.io.Source
 import scala.jdk.CollectionConverters._
 
 object Tasks extends App {
-
-  val example = """mxmxvkd kfcds sqjhc nhms (contains dairy, fish)
-                  |trh fvjkl sbzzf mxmxvkd (contains dairy)
-                  |sqjhc fvjkl (contains soy)
-                  |sqjhc mxmxvkd sbzzf (contains fish)""".stripMargin.split("\n").toList
 
   type Ingredient = String
   type Allergen   = String
@@ -70,9 +64,10 @@ object Tasks extends App {
   }
 
   val input         = parseInput(Source.fromResource("day21/input.txt").getLines().toList)
-  val task1Solution = task1(input)
-  val task2Solution = task2(input)
 
+  val task1Solution = task1(input)
   println(s"Task 1: $task1Solution")
+
+  val task2Solution = task2(input)
   println(s"Task 2: $task2Solution")
 }
