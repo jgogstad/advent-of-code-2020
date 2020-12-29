@@ -24,7 +24,6 @@ object Tasks extends App {
     }
   }
 
-
   def task1(in: (Chain[Int], Chain[Int])): Int = {
     @tailrec
     def game(p1: Chain[Int], p2: Chain[Int]): Chain[Int] = {
@@ -38,42 +37,50 @@ object Tasks extends App {
       }
     }
 
-    (game _).tupled(in).reverse.zipWithIndex.map {
-      case (el, i) => el * (i + 1)
-    }.toList.sum
+    (game _)
+      .tupled(in)
+      .reverse
+      .zipWithIndex
+      .map { case (el, i) => el * (i + 1) }
+      .toList
+      .sum
   }
 
   def task2(in: (Chain[Int], Chain[Int])): Int = {
 
-    def go(game: Int, round: Int, p1: Chain[Int], p2: Chain[Int], state: Set[(Chain[Int], Chain[Int])] = Set.empty): (Either[1,2], Chain[Int]) = {
-      if (state.contains(p1 -> p2)) {
-        val r: (Either[1, 2], Chain[Int]) = Left[1,2](1) -> p1
-        r
-      }
+    def go(
+      game: Int,
+      round: Int,
+      p1: Chain[Int],
+      p2: Chain[Int],
+      state: Set[(Chain[Int], Chain[Int])] = Set.empty
+    ): (Either[1, 2], Chain[Int]) = {
+      if (state.contains(p1 -> p2)) Left[1, 2](1) -> p1
       else {
         val nextState = state + (p1 -> p2)
         (p1.uncons, p2.uncons) match {
           case (Some((p1h, p1t)), Some((p2h, p2t))) =>
-            if (p1t.length >= p1h && p2t.length >= p2h) go(game + 1, 0, Chain.fromSeq(p1t.toList.take(p1h)), Chain.fromSeq(p2t.toList.take(p2h)), Set.empty) match {
-              case (Left(1), _) => go(game, round + 1, p1t ++ Chain(p1h, p2h), p2t, nextState)
-              case (Right(2), _) => go(game, round + 1, p1t, p2t ++ Chain(p2h, p1h), nextState)
-            }
+            if (p1t.length >= p1h && p2t.length >= p2h)
+              go(game + 1, 0, Chain.fromSeq(p1t.toList.take(p1h)), Chain.fromSeq(p2t.toList.take(p2h)), Set.empty) match {
+                case (Left(1), _)  => go(game, round + 1, p1t ++ Chain(p1h, p2h), p2t, nextState)
+                case (Right(2), _) => go(game, round + 1, p1t, p2t ++ Chain(p2h, p1h), nextState)
+              }
             else if (p1h > p2h) go(game, round + 1, p1t ++ Chain(p1h, p2h), p2t, nextState)
             else go(game, round + 1, p1t, p2t ++ Chain(p2h, p1h), nextState)
-          case (None, Some(_)) => Right[1,2](2) -> p2
-          case (Some(_), None) => Left[1,2](1) -> p1
-          case (None, None) => throw new Exception("Inconceivable!")
+          case (None, Some(_)) => Right[1, 2](2) -> p2
+          case (Some(_), None) => Left[1, 2](1) -> p1
+          case (None, None)    => throw new Exception("Inconceivable!")
         }
       }
     }
 
-    val (p1, p2) = in
-    val (_, stack) = go(0,0,p1, p2)
-    val r = stack.reverse.zipWithIndex.map {
-      case (el, i) => el * (i + 1)
-    }
+    val (p1, p2)   = in
+    val (_, stack) = go(0, 0, p1, p2)
 
-    r.toList.sum
+    stack.reverse.zipWithIndex
+      .map { case (el, i) => el * (i + 1) }
+      .toList
+      .sum
   }
 
   val input = parse(Source.fromResource("day22/input.txt").getLines().toList)

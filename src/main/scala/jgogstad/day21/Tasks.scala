@@ -63,7 +63,7 @@ object Tasks extends App {
     mappings.toList.sortBy(_._1).map(_._2).mkString(",")
   }
 
-  val input         = parseInput(Source.fromResource("day21/input.txt").getLines().toList)
+  val input = parseInput(Source.fromResource("day21/input.txt").getLines().toList)
 
   val task1Solution = task1(input)
   println(s"Task 1: $task1Solution")
